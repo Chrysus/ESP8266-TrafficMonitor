@@ -1,0 +1,47 @@
+#ifndef KRY_MY_DEVICES_H
+#define KRY_MY_DEVICES_H
+
+#include "KRY_AccessPoint.h"
+#include "KRY_Device.h"
+
+#define MY_DEVICE_ARRAY_LENGTH  12
+
+KRY_Mac iPhoneMac = {0xe4, 0xe4, 0xab, 0x2f, 0x70, 0x6a};
+KRY_Device iPhone = KRY_Device(iPhoneMac, "iPhone", 6);
+
+KRY_Mac LogitechRadioMac = {0x00, 0x04, 0x20, 0x28, 0x03, 0x17};
+KRY_Device LogitechRadio = KRY_Device(LogitechRadioMac, "Logitech Radio", 14);
+
+KRY_Mac RpiScanMac = {0xb8, 0x27, 0xeb, 0x03, 0xbd, 0xc2};
+KRY_Device RpiScan = KRY_Device(RpiScanMac, "RPi Scan", 8);
+
+KRY_Mac RokuTvMac = {0x08, 0x05, 0x81, 0x17, 0xa0, 0x55};
+KRY_Device RokuTV = KRY_Device(RokuTvMac, "Roku", 4);
+
+KRY_Mac EchoDotMac = {0x68, 0x54, 0xfd, 0x29, 0x4d, 0x9c};
+KRY_Device EchoDot = KRY_Device(EchoDotMac, "Alexa", 5);
+
+KRY_Mac ChumbyTvMac = {0xd8, 0x5d, 0x4c, 0x94, 0xdb, 0xe5};
+KRY_Device ChumbyTV = KRY_Device(ChumbyTvMac, "Chumby TV", 9);
+
+KRY_Mac KindleFireBlackMac = {0x40, 0xb4, 0xcd, 0xc2, 0x22, 0x45};
+KRY_Device KindleFireBlack = KRY_Device(KindleFireBlackMac, "Fire Black", 10);
+
+KRY_Mac KindleFireBlueMac = {0x88, 0x71, 0xe5, 0xb6, 0x80, 0xe0};
+KRY_Device KindleFireBlue = KRY_Device(KindleFireBlueMac, "Fire Blue", 9);
+
+KRY_Mac RpiAliceMac = {0x5c, 0xf3, 0x70, 0x03, 0x74, 0x68};
+KRY_Device RpiAlice = KRY_Device(RpiAliceMac, "Alice", 5);
+
+KRY_Mac ChumbyBedMac = {0xd8, 0x5d, 0x4c, 0x94, 0xd5, 0xbb};
+KRY_Device ChumbyBed = KRY_Device(ChumbyBedMac, "Chumby Bed", 10);
+
+KRY_Mac RPiKodiMac = {0xb8, 0x27, 0xeb, 0x46, 0x77, 0x18};
+KRY_Device RPiKodi = KRY_Device(RPiKodiMac, "Kodi", 4);
+
+KRY_Mac ChromeBookMac = {0xf0, 0x03, 0x8c, 0xaa, 0xb5, 0x5f};
+KRY_Device Chromebook = KRY_Device(ChromeBookMac, "Chromebook", 10);
+
+KRY_Device my_devices[] = {iPhone, LogitechRadio, RpiScan, RokuTV, EchoDot, ChumbyTV, KindleFireBlack, KindleFireBlue, RpiAlice, ChumbyBed, RPiKodi, Chromebook};
+
+#endif // KRY_MY_DEVICES_H
