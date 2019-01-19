@@ -22,7 +22,7 @@ void KRY_Device::AddAccessPoint(const struct KRY_AccessPoint *ap) {
     }
     
     // Already there?
-    if (KRY::mac_cmp(cur_ap->mac_address, ap->mac_address) == 0) {
+    if (KRY::ap_cmp(*cur_ap, *ap) == 0) {
       break;
     }
   }
@@ -32,9 +32,13 @@ void KRY_Device::AddBytesReceived(unsigned long bytes_received) {
   this->bytes_received += bytes_received;
 }
 
+void KRY_Device::AddBytesSent(unsigned long bytes_sent) {
+  this->bytes_sent += bytes_sent;
+}
+
 void KRY_Device::PrintDeviceInfo() const {
   KRY::print_mac_address(this->mac_address);
-  Serial.printf("\t(%12lu)", this->bytes_received);
+  Serial.printf("\t[tx:(%12lu)\trx:(%12lu)]", this->bytes_sent, this->bytes_received);
 
   if (this->device_name != 0) {
     Serial.printf("\t(%s)", this->device_name);
@@ -45,7 +49,13 @@ void KRY_Device::PrintDeviceInfo() const {
     if (ap != NULL) {
       Serial.printf("\n\r");
       Serial.printf("\t");
-      KRY::print_mac_address(ap->mac_address);
+      if (ap->ssid_length > 0 && ap->ssid_length <= 32) {
+        char ssid[33] = {0};
+        memcpy(ssid, ap->ssid, ap->ssid_length);
+        Serial.printf("%s", ssid);
+      } else {
+        KRY::print_mac_address(ap->mac_address);
+      }
     }
   }
   Serial.printf("\n\r");
@@ -58,4 +68,5 @@ void KRY_Device::SetDeviceName(char *device_name, unsigned short len) {
   
   this->device_name = new char[len + 1];
   strncpy(this->device_name, device_name, len);
+  this->device_name[len] = '\0';
 }

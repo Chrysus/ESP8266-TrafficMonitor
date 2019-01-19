@@ -46,7 +46,7 @@
  */
 byte gMyMAC[6];
 
-const unsigned int kChannel = 8;  //<-- set this to 0 to scan (Channels range from 1 to 14)
+const unsigned int kChannel = 0;  //<-- set this to 0 to scan (Channels range from 1 to 14)
 
 // The following arrays will store the datagram counts for each channel; to 
 // keep things simple, the index into the array for the channel will be the

@@ -20,9 +20,12 @@ class KRY_MacManager {
   void PrintStations();
   
  private:
-  const struct KRY_AccessPoint * access_points[ACCESS_POINT_ARRAY_SIZE] = {0};
-  const struct KRY_Mac * devices[ACCESS_POINT_ARRAY_SIZE] = {0};
-  KRY_Device * device_array[ACCESS_POINT_ARRAY_SIZE] = {0};
+  struct KRY_AccessPoint *access_points_list = 0;
+  struct KRY_AccessPoint *access_points_tail = 0;
+
+  KRY_Device *devices_list = 0;
+  KRY_Device *devices_tail = 0;
+
 
   // methods
   void ProcessDatagram_012(void *buf, int len);
@@ -34,16 +37,17 @@ class KRY_MacManager {
   void ProcessProbeRequestFrame(void *buf, int len);
 
   // Helper Methods
-  struct KRY_AccessPoint * CreateAccessPoint(const struct KRY_Mac &mac_address, const struct ESPDatagramBeaconSSID *ssid);
-  void AddAccessPoint(const struct KRY_AccessPoint *access_point);
+  void AddAccessPoint(const struct KRY_Mac &mac_address, const char *ssid_string, unsigned short ssid_len);
   bool IsAccessPointKnown(const struct KRY_Mac &mac_address);
   bool IsAccessPointKnown(const struct KRY_AccessPoint &access_point);
 
-  void AddDevice(const struct KRY_Mac *device_mac);
+  void AddDeviceWithMac(const struct KRY_Mac &device_mac);
   void AddDevice(KRY_Device *device);
   bool IsDeviceKnown(const struct KRY_Mac &device);
   void AddAccessPointToDevice(const struct KRY_Mac *ap_mac, const struct KRY_Mac *device_mac);
 
+  struct KRY_AccessPoint * GetAccessPoint(const struct KRY_Mac *ap_mac);
+  struct KRY_AccessPoint * GetAccessPointWithSSID(const char* ssid, unsigned short ssid_len);
   KRY_Device * GetDevice(const struct KRY_Mac *device_mac);
 };
 

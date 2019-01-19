@@ -7,6 +7,9 @@ struct KRY_AccessPoint {
   KRY_Mac mac_address;
   unsigned char ssid_length;
   char ssid[32];                  //<-- ssid has a max length of 32 chars
+
+  // This is for a linked list of Access Points
+  struct KRY_AccessPoint *next = 0;
 };
 
 // Helper Functions
